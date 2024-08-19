@@ -1,0 +1,20 @@
+[package]
+name = "sender"
+version = "1.2.1"
+authors = []
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+default = []
+integration-test = []
+
+[dependencies]
+sweat-model = { workspace = true }
+
+static_assertions = "1.1.0"
+near-sdk = { workspace = true }
+near-contract-standards = { workspace = true }
