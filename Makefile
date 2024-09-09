@@ -18,7 +18,6 @@ build-in-docker: ##@Build reproducible artifact in Docker.
 
 dock: build-in-docker ##@Build Shorthand for `build-in-docker`
 
-
 cov: ##@Testing Run unit tests with coverage.
 	cargo llvm-cov --hide-instantiations --open
 

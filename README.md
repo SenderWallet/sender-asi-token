@@ -10,7 +10,7 @@
 
 ```rust
 ./scripts/build.sh
-//The wasm file will be at `res/sender.wasm`
+//The wasm file will be at `res/sai.wasm`
 
 cargo test -- --nocapture
 cargo run --example mint
@@ -26,7 +26,7 @@ export TOKEN_ACCOUNT_ID=your-token-account-id
 Deploy and initialize the contract:
 
 ```bash
-near deploy --accountId=$TOKEN_ACCOUNT_ID --wasmFile=res/sender.wasm --initArgs '{"owner":"'$OWNER'","total_supply":"100000000000000000000000000"}' --initFunction new
+near deploy --accountId=$TOKEN_ACCOUNT_ID --wasmFile=res/sai.wasm --initArgs '{"owner":"'$OWNER'","total_supply":"100000000000000000000000000"}' --initFunction new
 ```
 
 Call view methods

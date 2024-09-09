@@ -1,7 +1,6 @@
 [workspace]
 members = [
     "sender",
-    "sender",
     "integration-tests",
 ]
 
@@ -21,4 +20,3 @@ near-contract-standards = { git = "https://github.com/sweatco/near-sdk-rs", rev 
 integration-trait = { git = "https://github.com/sweatco/integration-utils.git", rev = "e54dc392ef42837123dd2c0ad19b6d6b815192d7" }
 integration-utils = { git = "https://github.com/sweatco/integration-utils.git", rev = "e54dc392ef42837123dd2c0ad19b6d6b815192d7" }
 
-sweat-model = { path = "model" }

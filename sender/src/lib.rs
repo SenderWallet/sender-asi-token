@@ -8,13 +8,11 @@ use near_contract_standards::fungible_token::{
 };
 use near_sdk::{
     borsh::{self, BorshDeserialize, BorshSerialize},
-    collections::UnorderedSet,
     env,
     log,
     json_types::{U128, U64},
     near_bindgen, require, AccountId, Balance, PanicOnDefault, PromiseOrValue,
 };
-use sweat_model::{SweatApi};
 
 
 #[near_bindgen]
@@ -24,7 +22,7 @@ pub struct Contract {
 }
 
 #[near_bindgen]
-impl SweatApi for Contract {
+impl Contract {
     #[init]
     fn new(owner: AccountId, total_supply: U128) -> Self {
         let mut contract = Contract {
@@ -54,20 +52,6 @@ impl SweatApi for Contract {
 near_contract_standards::impl_fungible_token_core!(Contract, token);
 near_contract_standards::impl_fungible_token_storage!(Contract, token);
 
-/// Taken from contract standards but modified to default if account isn't initialized
-/// rather than panicking:
-/// <https://github.com/near/near-sdk-rs/blob/6596dc311036fe51d94358ac8f6497ef6e5a7cfc/near-contract-standards/src/fungible_token/core_impl.rs#L105>
-fn internal_deposit(token: &mut FungibleToken, account_id: &AccountId, amount: Balance) {
-    let balance = token.accounts.get(account_id).unwrap_or_default();
-    let new_balance = balance
-        .checked_add(amount)
-        .unwrap_or_else(|| env::panic_str("Balance overflow"));
-    token.accounts.insert(account_id, &new_balance);
-    token.total_supply = token
-        .total_supply
-        .checked_add(amount)
-        .unwrap_or_else(|| env::panic_str("Total supply overflow"));
-}
 
 #[near_bindgen]
 impl FungibleTokenMetadataProvider for Contract {
