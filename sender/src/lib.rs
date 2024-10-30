@@ -24,7 +24,7 @@ pub struct Contract {
 #[near_bindgen]
 impl Contract {
     #[init]
-    fn new(owner: AccountId, total_supply: U128) -> Self {
+    pub fn new(owner: AccountId, total_supply: U128) -> Self {
         let mut contract = Contract {
             token: FungibleToken::new(b"t".to_vec(), None),
         };
@@ -37,7 +37,7 @@ impl Contract {
 
     }
 
-    fn burn(&mut self, amount: &U128) {
+    pub fn burn(&mut self, amount: &U128) {
         self.token.internal_withdraw(&env::predecessor_account_id(), amount.0);
         FtBurn {
             amount,
