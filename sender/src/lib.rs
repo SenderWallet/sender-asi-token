@@ -1,8 +1,5 @@
-#[macro_use]
-extern crate static_assertions;
-
 use near_contract_standards::fungible_token::{
-    events::{FtBurn, FtMint},
+    events::FtBurn,
     metadata::{FungibleTokenMetadata, FungibleTokenMetadataProvider},
     FungibleToken,
 };
@@ -10,8 +7,8 @@ use near_sdk::{
     borsh::{self, BorshDeserialize, BorshSerialize},
     env,
     log,
-    json_types::{U128, U64},
-    near_bindgen, require, AccountId, Balance, PanicOnDefault, PromiseOrValue,
+    json_types::{U128},
+    near_bindgen, AccountId, Balance, PanicOnDefault, PromiseOrValue,
 };
 
 
@@ -61,7 +58,7 @@ impl FungibleTokenMetadataProvider for Contract {
         FungibleTokenMetadata {
             spec: "ft-1.0".to_string(),
             name: "Sender AI Token".to_string(),
-            symbol: "SAI".to_string(),
+            symbol: "ASI".to_string(),
             icon: Some(String::from(data_url)),
             reference: None,
             reference_hash: None,
@@ -78,17 +75,13 @@ mod tests {
         test_utils::VMContextBuilder,
         testing_env, AccountId,
     };
-    use sweat_model::SweatApi;
 
     use crate::Contract;
 
     const EPS: f64 = 0.00001;
 
-    fn sweat_the_token() -> AccountId {
-        AccountId::new_unchecked("sweat_the_token".to_string())
-    }
-    fn sweat_oracle() -> AccountId {
-        AccountId::new_unchecked("sweat_the_oracle".to_string())
+    fn sender_the_token() -> AccountId {
+        AccountId::new_unchecked("sender_the_token".to_string())
     }
     fn user1() -> AccountId {
         AccountId::new_unchecked("sweat_user1".to_string())

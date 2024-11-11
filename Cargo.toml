@@ -1,7 +1,6 @@
 [workspace]
 members = [
     "sender",
-    "integration-tests",
 ]
 
 resolver = "2"

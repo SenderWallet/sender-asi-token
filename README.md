@@ -1,4 +1,4 @@
-# SAI TOKEN
+# ASI TOKEN
 
 #### 📦 Dependencies
 
@@ -10,10 +10,9 @@
 
 ```rust
 ./scripts/build.sh
-//The wasm file will be at `res/sai.wasm`
+//The wasm file will be at `res/asi.wasm`
 
 cargo test -- --nocapture
-cargo run --example mint
 cargo run --example transfer
 ```
 
@@ -26,7 +25,7 @@ export TOKEN_ACCOUNT_ID=your-token-account-id
 Deploy and initialize the contract:
 
 ```bash
-near deploy --accountId=$TOKEN_ACCOUNT_ID --wasmFile=res/sai.wasm --initArgs '{"owner":"'$OWNER'","total_supply":"100000000000000000000000000"}' --initFunction new
+near deploy --accountId=$TOKEN_ACCOUNT_ID --wasmFile=res/asi.wasm --initArgs '{"owner":"'$OWNER'","total_supply":"100000000000000000000000000"}' --initFunction new
 ```
 
 Call view methods
@@ -54,14 +53,3 @@ near call $TOKEN_ACCOUNT_ID storage_deposit '{"account_id":"random-guy-1.testnet
 near view $TOKEN_ACCOUNT_ID storage_balance_of '{"account_id":"random-guy-1.testnet"}' --accountId $ORACLE_ACCOUNT_ID
 ```
 
-Mint tokens
-
-```bash
-near call $TOKEN_ACCOUNT_ID mint_tge '{"amount":"100", "account_for":"<account_for>"}' --accountId $TOKEN_ACCOUNT_ID --gas=300000000000000
-```
-
-### Deferring tokens
-
-![Smart contracts interaction](doc/contracts_interaction.png)
-
-For information about claiming tokens from Holding account refer to the [Sweat Claim repo](https://github.com/sweatco/sweat-claim). 
